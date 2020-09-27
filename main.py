@@ -4,12 +4,14 @@ import sys
 pygame.init()
 
 # global variables:
-
 screen_width = 1000 
 screen_height = 900 
-board_width = 450 # 450 / 10 = 45 => block = 45 
-board_height = 900 
-block = 45
+board_width = 400 # 400 / 10 = 40 => block = 40
+board_height = 800 
+board_x = (screen_width - board_width) // 2 # point at which the board will lie with respect to the screen
+board_y = (screen_height - board_height) // 2
+block = 40
+
 # define colours
 black = (0,0,0) 
 white = (255,255,255)
@@ -21,9 +23,44 @@ green = (0,250,0)
 purple = (185,0,255)
 red = (255,0,0)
 
+# tetriminos
+I = [['00100',
+      '00100',
+      '00100',
+      '00100',
+      '00000'],
+     ['00000',
+      '11110',
+      '00000',
+      '00000',
+      '00000']]
+tetriminos = [I]
+
+# def start():
+#     key_input = pygame.key.get_pressed()
+
+#     font = pygame.freetype.SysFont(\'comicsans\', 40)
+#     font.render_to(screen, (40, 350), "PRESS SPACE TO START", (0, 0, 0))
+    
+#     run = True
+#     while run == True:
+
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Tetris")
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+
+    screen.fill(white)
+    pygame.draw.rect(screen, black, (board_x, board_y, board_width, board_height))
+    pygame.display.update()
+
+
 # previous experimentation
 """ fps = 30
-fpsclock = pygame.time.Clock()
+fpsclock = pygame0time0Clock()
 x = 10
 y = 10
 shift = 10
