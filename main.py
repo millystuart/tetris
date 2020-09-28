@@ -11,8 +11,6 @@ board_height = 800
 board_x = (screen_width - board_width) // 2 # point at which the board will lie with respect to the screen
 board_y = (screen_height - board_height) // 2
 block = 40
-block_x = board_x
-block_y = board_y
 fps = 30
 fpsclock = pygame.time.Clock()
 
@@ -28,26 +26,109 @@ purple = (185,0,255)
 red = (255,0,0)
 
 # tetriminos
-I = [['00100',
-      '00100',
+S = [["00000",
+      "00000",
+      "00110",
+      "01100",
+      "00000"],
+     ["00000",
+      "00100",
+      "00110",
+      "00010",
+      "00000"]]
+
+Z = [["00000",
+      "00000",
+      "01100",
+      "00110",
+      "00000"],
+     ["00000",
+      "00100",
+      "01100",
+      "01000",
+      "00000"]]
+
+I = [["00100",
+      "00100",
+      "00100",
+      "00100",
+      "00000"],
+     ["00000",
+      "11110",
+      "00000",
+      "00000",
+      "00000"]]
+
+O = [["00000",
+      "00000",
+      "01100",
+      "01100",
+      "00000"]]
+
+J = [['00000',
+      '01000',
+      '01110',
+      '00000',
+      '00000'],
+     ['00000',
+      '00110',
       '00100',
       '00100',
       '00000'],
      ['00000',
-      '11110',
       '00000',
-      '00000',
+      '01110',
+      '00010',
+      '00000'],
+     ['00000',
+      '00100',
+      '00100',
+      '01100',
       '00000']]
-tetriminos = [I]
 
-# def start():
-#     key_input = pygame.key.get_pressed()
+L = [['00000',
+      '00010',
+      '01110',
+      '00000',
+      '00000'],
+     ['00000',
+      '00100',
+      '00100',
+      '00110',
+      '00000'],
+     ['00000',
+      '00000',
+      '01110',
+      '01000',
+      '00000'],
+     ['00000',
+      '01100',
+      '00100',
+      '00100',
+      '00000']]
 
-#     font = pygame.freetype.SysFont(\'comicsans\', 40)
-#     font.render_to(screen, (40, 350), "PRESS SPACE TO START", (0, 0, 0))
-    
-#     run = True
-#     while run == True:
+T = [['00000',
+      '00100',
+      '01110',
+      '00000',
+      '00000'],
+     ['00000',
+      '00100',
+      '00110',
+      '00100',
+      '00000'],
+     ['00000',
+      '00000',
+      '01110',
+      '00100',
+      '00000'],
+     ['00000',
+      '00100',
+      '01100',
+      '00100',
+      '00000']]
+
+tetriminos = [S, Z, I, O, J, L, T]
 
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Tetris")
@@ -57,7 +138,17 @@ while True:
         if event.type == pygame.QUIT:
             sys.exit()
 
-    screen.fill(white)
+# def start():
+#     key_input = pygame.key.get_pressed()
+
+#     font = pygame.freetype.SysFont(\"comicsans\", 40)
+#     font.render_to(screen, (40, 350), "PRESS SPACE TO START", (0, 0, 0))
+    
+#     run = True
+#     while run == True:
+
+# previous experimentation
+""" screen.fill(white)
     board = pygame.Surface((board_width, board_height))
     board.fill(black)
     screen.blit(board, (board_x, board_y))
@@ -72,12 +163,11 @@ while True:
     if key_input[pygame.K_RIGHT]:
         block_x += block
     if key_input[pygame.K_DOWN]:
-        block_y += block
+        block_y += block 
 
     pygame.display.update()
-    fpsclock.tick(fps)
+    fpsclock.tick(fps) """
 
-# previous experimentation
 """ fps = 30
 fpsclock = pygame0time0Clock()
 x = 10
