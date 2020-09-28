@@ -11,6 +11,8 @@ board_height = 800
 board_x = (screen_width - board_width) // 2 # point at which the board will lie with respect to the screen
 board_y = (screen_height - board_height) // 2
 block = 40
+block_x = 0
+block_y = 0
 fps = 30
 fpsclock = pygame.time.Clock()
 
@@ -142,19 +144,53 @@ def start():
         messagerect.centerx = screen.get_rect().centerx
         messagerect.centery = screen.get_rect().centery
         screen.blit(message, messagerect)
-        
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 
         key_input = pygame.key.get_pressed()
         if key_input[pygame.K_SPACE]:
-            sys.exit()
+            main()
         
         pygame.display.update()
 
+def make_board():
+    board = pygame.Surface((board_width, board_height))
+    board.fill(black)
+    screen.blit(board, (board_x, board_y))
+    pygame.display.update()
+
+def experiment():
+    global block_x 
+    global block_y
+
+    screen.fill(white)
+    experiment = pygame.draw.rect(screen, purple, (block_x, block_y, block, block))
+    experiment.clamp_ip(screen.get_rect())
+    pygame.display.flip()
+
+    key_input = pygame.key.get_pressed()   
+    if key_input[pygame.K_LEFT]:
+        block_x -= block
+    if key_input[pygame.K_UP]:
+        block_y -= block
+    if key_input[pygame.K_RIGHT]:
+        block_x += block
+    if key_input[pygame.K_DOWN]:
+        block_y += block 
+
+    pygame.display.update()
+    fpsclock.tick(fps)
+
 def main():
-    pass
+    while True: # game loop
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+        make_board()
+        experiment()
 
 start()
 
