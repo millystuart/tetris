@@ -11,6 +11,10 @@ board_height = 800
 board_x = (screen_width - board_width) // 2 # point at which the board will lie with respect to the screen
 board_y = (screen_height - board_height) // 2
 block = 40
+block_x = board_x
+block_y = board_y
+fps = 30
+fpsclock = pygame.time.Clock()
 
 # define colours
 black = (0,0,0) 
@@ -54,16 +58,31 @@ while True:
             sys.exit()
 
     screen.fill(white)
-    pygame.draw.rect(screen, black, (board_x, board_y, board_width, board_height))
-    pygame.display.update()
+    board = pygame.Surface((board_width, board_height))
+    board.fill(black)
+    screen.blit(board, (board_x, board_y))
+    thing = pygame.draw.rect(board, purple, (block_x, block_y, block, block))
+    thing.clamp_ip(board.get_rect())
 
+    key_input = pygame.key.get_pressed()   
+    if key_input[pygame.K_LEFT]:
+        block_x -= block
+    if key_input[pygame.K_UP]:
+        block_y -= block
+    if key_input[pygame.K_RIGHT]:
+        block_x += block
+    if key_input[pygame.K_DOWN]:
+        block_y += block
+
+    pygame.display.update()
+    fpsclock.tick(fps)
 
 # previous experimentation
 """ fps = 30
 fpsclock = pygame0time0Clock()
 x = 10
 y = 10
-shift = 10
+block = 10
 
 game loop
     while True:
@@ -76,12 +95,12 @@ game loop
 
     key_input = pygame.key.get_pressed()   
     if key_input[pygame.K_LEFT]:
-        x -= shift
+        x -= block
     if key_input[pygame.K_UP]:
-        y -= shift
+        y -= block
     if key_input[pygame.K_RIGHT]:
-        x += shift
+        x += block
     if key_input[pygame.K_DOWN]:
-        y += shift
+        y += block
     pygame.display.update()
     fpsclock.tick(fps) """ 
