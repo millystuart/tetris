@@ -133,19 +133,32 @@ tetriminos = [S, Z, I, O, J, L, T]
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Tetris")
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+def start():
+    while True:
+        screen.fill(white)
+        font = pygame.font.SysFont(None, 48)
+        message = font.render('PRESS SPACE TO START', True, black, white)
+        messagerect = message.get_rect()
+        messagerect.centerx = screen.get_rect().centerx
+        messagerect.centery = screen.get_rect().centery
+        screen.blit(message, messagerect)
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+        key_input = pygame.key.get_pressed()
+        if key_input[pygame.K_SPACE]:
             sys.exit()
+        
+        pygame.display.update()
 
-# def start():
-#     key_input = pygame.key.get_pressed()
+def main():
+    pass
 
-#     font = pygame.freetype.SysFont(\"comicsans\", 40)
-#     font.render_to(screen, (40, 350), "PRESS SPACE TO START", (0, 0, 0))
-    
-#     run = True
-#     while run == True:
+start()
+
+
 
 # previous experimentation
 """ screen.fill(white)
