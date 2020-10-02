@@ -6,13 +6,11 @@ pygame.init()
 # global variables:
 screen_width = 1000 
 screen_height = 900 
-board_width = 400 # 400 / 10 = 40 => block = 40
-board_height = 800 
+board_width = 400 # 400 / 10 = 40 => block = 40 as Tetris board is always 10x20
+board_height = 800 # 800 / 20 = 40, so block is 40x40 
 board_x = (screen_width - board_width) // 2 # point at which the board will lie with respect to the screen
 board_y = (screen_height - board_height) // 2
-block = 40
-fps = 30
-fpsclock = pygame.time.Clock()
+block = 40 # size of a block relative to the board
 
 # define colours
 black = (0,0,0) 
@@ -129,8 +127,10 @@ T = [['00000',
       '00000']]
 
 tetriminos = [S, Z, I, O, J, L, T]
+tetrimino_colours = [green, red, turquoise, yellow, blue, orange, purple]
+# referenced by index 0-6. colour index corresponds with tetriminos (so tetriminos[1] will be filled with tetrimino_colours[1])
 
-screen = pygame.display.set_mode((screen_width, screen_height))
+screen = pygame.display.set_mode((screen_width, screen_height)) # initialising main window
 pygame.display.set_caption("Tetris")
 
 def start():
@@ -138,72 +138,41 @@ def start():
         screen.fill(white)
         font = pygame.font.SysFont(None, 48)
         message = font.render('PRESS SPACE TO START', True, black, white)
-        messagerect = message.get_rect()
+        messagerect = message.get_rect() # next three lines just centre the text on the screen
         messagerect.centerx = screen.get_rect().centerx
         messagerect.centery = screen.get_rect().centery
-        screen.blit(message, messagerect)
+        screen.blit(message, messagerect) # draws my message onto the screen
         
-        for event in pygame.event.get():
+        for event in pygame.event.get(): # system exit loop
             if event.type == pygame.QUIT:
                 sys.exit()
 
         key_input = pygame.key.get_pressed()
-        if key_input[pygame.K_SPACE]:
-            sys.exit()
+        if key_input[pygame.K_SPACE]: # if space is pressed, proceed to function main()
+            main()
         
-        pygame.display.update()
-
-def main():
+        pygame.display.update() # updates the display to show changes
+        
+def draw_board():
     pass
+    # will use Pygame to draw the grid graphically
 
-start()
-
-
-
-# previous experimentation
-""" screen.fill(white)
+def make_board():
     board = pygame.Surface((board_width, board_height))
     board.fill(black)
     screen.blit(board, (board_x, board_y))
-    thing = pygame.draw.rect(board, purple, (block_x, block_y, block, block))
-    thing.clamp_ip(board.get_rect())
-
-    key_input = pygame.key.get_pressed()   
-    if key_input[pygame.K_LEFT]:
-        block_x -= block
-    if key_input[pygame.K_UP]:
-        block_y -= block
-    if key_input[pygame.K_RIGHT]:
-        block_x += block
-    if key_input[pygame.K_DOWN]:
-        block_y += block 
-
     pygame.display.update()
-    fpsclock.tick(fps) """
 
-""" fps = 30
-fpsclock = pygame0time0Clock()
-x = 10
-y = 10
-block = 10
+def translate_tetrimino():
+    pass 
+    # function to translate our 2D arrays into something the computer can use and interpret
 
-game loop
-    while True:
-    game_display.fill(yellow)
-    pygame.draw.rect(game_display, purple, (x, y, 80, 80))
+def main():
+    while True: # game loop
+        for event in pygame.event.get(): # system exit loop
+            if event.type == pygame.QUIT:
+                sys.exit()
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
+        make_board()
 
-    key_input = pygame.key.get_pressed()   
-    if key_input[pygame.K_LEFT]:
-        x -= block
-    if key_input[pygame.K_UP]:
-        y -= block
-    if key_input[pygame.K_RIGHT]:
-        x += block
-    if key_input[pygame.K_DOWN]:
-        y += block
-    pygame.display.update()
-    fpsclock.tick(fps) """ 
+start()
