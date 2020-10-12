@@ -9,7 +9,7 @@ screen_width = 1000
 screen_height = 900 
 board_width = 400 # 400 / 10 = 40 => block = 40 as Tetris board is always 10x20
 board_height = 800 # 800 / 20 = 40, so block is 40x40 
-boarmaind_x = (screen_width - board_width) // 2 # point at which the board will lie with respect to the screen
+board_x = (screen_width - board_width) // 2 # point at which the board will lie with respect to the screen
 board_y = (screen_height - board_height) // 2
 block = 40 # size of a block relative to the board
 
@@ -43,9 +43,10 @@ def draw_board():
     # will use Pygame to draw the grid graphically
 
 def make_board():
+    screen.fill(white)
     board = pygame.Surface((board_width, board_height))
     board.fill(black)
-    screen.blit(board, (boarmaind_x, board_y))
+    screen.blit(board, (board_x, board_y))
     pygame.display.update()
 
 def main():
