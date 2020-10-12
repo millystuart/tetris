@@ -98,6 +98,23 @@ Z = [[[1, 1, 0],
 tetriminos = [S, Z, I, O, J, L, T]
 tetrimino_colour = [green, red, turquoise, yellow, blue, orange, purple]
 
-def coords_tetrimino(tetrimino, colour, rotation, x, y):
-    return []
-    # function to convert our 2D arrays into something the computer can use and interpret
+def coords_tetrimino(tetrimino, colour, rotation, x, y): # function to convert our 2D arrays into something the computer can use and interpret
+      import pdb; pdb.set_trace() # stepping start point
+      coords = []
+      shape = tetriminos[tetrimino]
+      current_row = 0
+      
+      for row in shape[rotation]:
+            current_col = 0
+            print(row)
+            for col in row:
+                  print(col)
+                  if col == 1:
+                        coord = (current_col + x, current_row + y, colour)
+                        coords.append(coord) 
+
+                  current_col = current_col + 1
+
+            current_row = current_row + 1      
+
+      return coords

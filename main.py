@@ -1,6 +1,6 @@
 import pygame
 import sys
-from tetris import *
+from tetrimino import *
 
 pygame.init()
 
@@ -18,7 +18,7 @@ block = 40 # size of a block relative to the board
 screen = pygame.display.set_mode((screen_width, screen_height)) # initialising main window
 pygame.display.set_caption("Tetris")
 
-def start():
+def start(): # start-up function that forms the rough UI
     while True:
         screen.fill(white)
         font = pygame.font.SysFont(None, 48)
@@ -42,14 +42,14 @@ def draw_board():
     pass
     # will use Pygame to draw the grid graphically
 
-def make_board():
+def make_board(): # creates a rough outline of the board in its most basic form
     screen.fill(white)
     board = pygame.Surface((board_width, board_height))
     board.fill(black)
     screen.blit(board, (board_x, board_y))
     pygame.display.update()
 
-def main():
+def main(): # the main game loop
     while True: # game loop
         for event in pygame.event.get(): # system exit loop
             if event.type == pygame.QUIT:
