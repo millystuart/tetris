@@ -13,8 +13,6 @@ board_x = (screen_width - board_width) // 2 # point at which the board will lie 
 board_y = (screen_height - board_height) // 2
 block = 40 # size of a block relative to the board
 
-# referenced by index 0-6. colour index corresponds with tetriminos (so tetriminos[1] will be filled with tetrimino_colours[1])
-
 screen = pygame.display.set_mode((screen_width, screen_height)) # initialising main window
 pygame.display.set_caption("Tetris")
 
@@ -37,10 +35,6 @@ def start(): # start-up function that forms the rough UI
             main()
         
         pygame.display.update() # updates the display to show changes
-        
-def draw_board():
-    pass
-    # will use Pygame to draw the grid graphically
 
 def make_board(): # creates a rough outline of the board in its most basic form
     screen.fill(white)
@@ -54,7 +48,6 @@ def main(): # the main game loop
         for event in pygame.event.get(): # system exit loop
             if event.type == pygame.QUIT:
                 sys.exit()
-
         make_board()
 
 start()
