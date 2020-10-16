@@ -126,13 +126,13 @@ Z = dict(
 tetriminos = [S, Z, I, O, J, L, T]
 # referenced by index 0-6.
 
-def coords_tetrimino(tetrimino, colour, rotation, x, y): # function to convert our 2D arrays into something the computer can use and interpret
+def coords_tetrimino(tetrimino, rotation, x, y): # to convert our 2D arrays into something the computer can use and interpret
       # import pdb; pdb.set_trace() # stepping start point
       coords = []
-      shape = tetriminos[tetrimino]
+      colour = tetrimino["colour"]
       current_row = 0
       
-      for row in shape["rotations"][rotation]:
+      for row in tetrimino["rotations"][rotation]:
             current_col = 0
             for col in row:
                   if col == 1:
