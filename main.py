@@ -1,5 +1,6 @@
 import pygame
 import sys
+from tetrimino import *
 
 pygame.init()
 
@@ -12,128 +13,10 @@ board_x = (screen_width - board_width) // 2 # point at which the board will lie 
 board_y = (screen_height - board_height) // 2
 block = 40 # size of a block relative to the board
 
-# define colours
-black = (0,0,0) 
-white = (255,255,255)
-turquoise = (70,255,255)
-blue = (0,60,255)
-orange = (255,200,0)
-yellow = (255,250,0)
-green = (0,250,0)
-purple = (185,0,255)
-red = (255,0,0)
-
-# tetriminos
-S = [["00000",
-      "00000",
-      "00110",
-      "01100",
-      "00000"],
-     ["00000",
-      "00100",
-      "00110",
-      "00010",
-      "00000"]]
-
-Z = [["00000",
-      "00000",
-      "01100",
-      "00110",
-      "00000"],
-     ["00000",
-      "00100",
-      "01100",
-      "01000",
-      "00000"]]
-
-I = [["00100",
-      "00100",
-      "00100",
-      "00100",
-      "00000"],
-     ["00000",
-      "11110",
-      "00000",
-      "00000",
-      "00000"]]
-
-O = [["00000",
-      "00000",
-      "01100",
-      "01100",
-      "00000"]]
-
-J = [['00000',
-      '01000',
-      '01110',
-      '00000',
-      '00000'],
-     ['00000',
-      '00110',
-      '00100',
-      '00100',
-      '00000'],
-     ['00000',
-      '00000',
-      '01110',
-      '00010',
-      '00000'],
-     ['00000',
-      '00100',
-      '00100',
-      '01100',
-      '00000']]
-
-L = [['00000',
-      '00010',
-      '01110',
-      '00000',
-      '00000'],
-     ['00000',
-      '00100',
-      '00100',
-      '00110',
-      '00000'],
-     ['00000',
-      '00000',
-      '01110',
-      '01000',
-      '00000'],
-     ['00000',
-      '01100',
-      '00100',
-      '00100',
-      '00000']]
-
-T = [['00000',
-      '00100',
-      '01110',
-      '00000',
-      '00000'],
-     ['00000',
-      '00100',
-      '00110',
-      '00100',
-      '00000'],
-     ['00000',
-      '00000',
-      '01110',
-      '00100',
-      '00000'],
-     ['00000',
-      '00100',
-      '01100',
-      '00100',
-      '00000']]
-
-tetriminos = [S, Z, I, O, J, L, T]
-tetrimino_colours = [green, red, turquoise, yellow, blue, orange, purple]
-# referenced by index 0-6. colour index corresponds with tetriminos (so tetriminos[1] will be filled with tetrimino_colours[1])
-
 screen = pygame.display.set_mode((screen_width, screen_height)) # initialising main window
 pygame.display.set_caption("Tetris")
 
-def start():
+def start(): # start-up function that forms the rough UI
     while True:
         screen.fill(white)
         font = pygame.font.SysFont(None, 48)
@@ -152,27 +35,19 @@ def start():
             main()
         
         pygame.display.update() # updates the display to show changes
-        
-def draw_board():
-    pass
-    # will use Pygame to draw the grid graphically
 
-def make_board():
+def make_board(): # creates a rough outline of the board in its most basic form
+    screen.fill(white)
     board = pygame.Surface((board_width, board_height))
     board.fill(black)
     screen.blit(board, (board_x, board_y))
     pygame.display.update()
 
-def translate_tetrimino():
-    pass 
-    # function to translate our 2D arrays into something the computer can use and interpret
-
-def main():
+def main(): # the main game loop
     while True: # game loop
         for event in pygame.event.get(): # system exit loop
             if event.type == pygame.QUIT:
                 sys.exit()
-
         make_board()
 
 start()
