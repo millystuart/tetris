@@ -1,3 +1,5 @@
+import random
+
 # define colours
 black = (0,0,0) 
 white = (255,255,255)
@@ -142,5 +144,18 @@ def coords_tetrimino(tetrimino, rotation, x, y): # to convert our 2D arrays into
                   current_col = current_col + 1
 
             current_row = current_row + 1      
-
       return coords
+
+def get_tetrimino(): # fetches a random tetrimino
+      shape = random.choice(tetriminos)
+      
+      if shape == "O":
+            rotation = 0
+
+      else:
+            rotations = [0, 1, 2, 3]
+            rotation = random.choice(rotations)
+
+      random_tetrimino = shape["rotations"][rotation]
+
+      return (5, 0, random_tetrimino)
