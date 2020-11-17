@@ -17,4 +17,14 @@ def test_Z():
      [0, 0, 1]]     [0, 1, 0]]     [0, 0, 0]]     [0, 1, 0]]
      
      (J[2])         (S[3])         (T[0])         (Z[1]) """
-    
+
+def test_O():
+    assert coords_tetrimino(O, 0, 5, 7) == [(5, 7, yellow), (6, 7, yellow), (5, 8, yellow), (6, 8, yellow)]
+
+def weird_test_O():
+    assert coords_tetrimino(O, 3, 5, 7) == [(5, 7, yellow), (6, 7, yellow), (5, 8, yellow), (6, 8, yellow)]
+
+""" [[1, 1]
+     [1, 1]]
+     (O) """
+
