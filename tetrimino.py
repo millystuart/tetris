@@ -69,6 +69,12 @@ L = dict(
 
 O = dict(
       rotations = [[[1, 1],
+                    [1, 1]],
+                   [[1, 1],
+                    [1, 1]],
+                   [[1, 1],
+                    [1, 1]],
+                   [[1, 1],
                     [1, 1]]],
 
       colour = yellow
@@ -149,13 +155,8 @@ def coords_tetrimino(tetrimino, rotation, x, y): # to convert our 2D arrays into
 def get_tetrimino(): # fetches a random tetrimino
       shape = random.choice(tetriminos)
       
-      if shape == "O":
-            rotation = 0
-
-      else:
-            rotations = [0, 1, 2, 3]
-            rotation = random.choice(rotations)
-
+      rotations = [0, 1, 2, 3]
+      rotation = random.choice(rotations)
       random_tetrimino = shape["rotations"][rotation]
 
       return (5, 0, random_tetrimino)
