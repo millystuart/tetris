@@ -152,9 +152,27 @@ def coords_tetrimino(tetrimino, rotation, x, y): # to convert our 2D arrays into
             current_row = current_row + 1      
       return coords
 
+def left(tetrimino, rotation, x, y):
+      new_coords = []
+      new_coords = coords_tetrimino(tetrimino, rotation, x, y)
+
+      for i in range(0,4):
+            new_coords[i] = (new_coords[i][0] - 1, new_coords[i][1], new_coords[i][2])
+
+      return new_coords
+
+def right(tetrimino, rotation, x, y):
+      new_coords = []
+      new_coords = coords_tetrimino(tetrimino, rotation, x, y)
+
+      for i in range(0,4):
+            new_coords[i] = (new_coords[i][0] + 1, new_coords[i][1], new_coords[i][2])
+            
+      return new_coords
+
 def get_tetrimino(): # fetches a random tetrimino
       shape = random.choice(tetriminos)
-      
+
       rotations = [0, 1, 2, 3]
       rotation = random.choice(rotations)
       random_tetrimino = shape["rotations"][rotation]
