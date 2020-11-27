@@ -37,18 +37,32 @@ def start(): # start-up function that forms the rough UI
         pygame.display.update() # updates the display to show changes
 
 def make_board(): # creates a rough outline of the board in its most basic form
-    screen.fill(white)
+    global board
     board = pygame.Surface((board_width, board_height))
     board.fill(black)
-    pygame.draw.rect(board, purple, ((5 * block), (0 * block), block, block))
+    draw_block(startx, starty)
     screen.blit(board, (board_x, board_y))
     pygame.display.update()
 
+def draw_block(x, y):
+    pygame.draw.rect(board, purple, ((x * block), (y * block), block, block), 4)
+
 def main(): # the main game loop
-    while True: # game loop
+    global startx
+    startx = 4
+    global starty
+    starty = 0
+    while True:
         for event in pygame.event.get(): # system exit loop
             if event.type == pygame.QUIT:
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if starty < 19:
+                    starty = starty + 1
+                    draw_block(startx, starty)
+                else:
+                    draw_block(startx, starty)
+
         make_board()
 
 start()
