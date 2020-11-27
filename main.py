@@ -40,18 +40,19 @@ def make_board(): # creates a rough outline of the board in its most basic form
     global board
     board = pygame.Surface((board_width, board_height))
     board.fill(black)
-    draw_block(startx, starty)
+    draw_block(startx, starty) # added to draw a block onto the board that I made at the beginning.
     screen.blit(board, (board_x, board_y))
     pygame.display.update()
 
-def draw_block(x, y):
-    pygame.draw.rect(board, purple, ((x * block), (y * block), block, block), 4)
+def draw_block(x, y): # the function called in make_board()
+    pygame.draw.rect(board , purple, ((x * block), (y * block), block, block), 4)
 
 def main(): # the main game loop
-    global startx
+    global startx # initialising the start coordinate of block
     startx = 4
     global starty
     starty = 0
+    
     while True:
         for event in pygame.event.get(): # system exit loop
             if event.type == pygame.QUIT:
