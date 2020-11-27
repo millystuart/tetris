@@ -40,6 +40,7 @@ def make_board(): # creates a rough outline of the board in its most basic form
     screen.fill(white)
     board = pygame.Surface((board_width, board_height))
     board.fill(black)
+    pygame.draw.rect(board, purple, ((5 * block), (0 * block), block, block))
     screen.blit(board, (board_x, board_y))
     pygame.display.update()
 
