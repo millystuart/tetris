@@ -134,6 +134,8 @@ Z = dict(
 tetriminos = [S, Z, I, O, J, L, T]
 # referenced by index 0-6.
 
+rotations = [0, 1, 2, 3]
+
 def coords_tetrimino(tetrimino, rotation, x, y): # to convert our 2D arrays into something the computer can use and interpret
       # import pdb; pdb.set_trace() # stepping start point
       coords = []
@@ -170,11 +172,15 @@ def right(tetrimino, rotation, x, y):
             
       return new_coords
 
-def get_tetrimino(): # fetches a random tetrimino
-      shape = random.choice(tetriminos)
-
-      rotations = [0, 1, 2, 3]
+def get_tetrimino(): 
+      # Create a new tetrimino for the board 
+      tetrimino = random.choice(tetriminos)
       rotation = random.choice(rotations)
-      random_tetrimino = shape["rotations"][rotation]
 
-      return (5, 0, random_tetrimino)
+      # Worry about randomise this for all possible case later
+      return dict(
+            tetrimino = tetrimino,
+            rotation = rotation,
+            x = 4,
+            y = 0
+      )
