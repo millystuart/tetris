@@ -1,6 +1,6 @@
 import pygame
 import sys
-from graphics import render, initialise_graphics, press_space_to_start, draw_block
+from graphics import render, initialise_graphics, press_space_to_start, draw_block, draw_tetrimino
 from board import initialise_board
 
 def main(): # the main game loop

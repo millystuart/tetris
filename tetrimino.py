@@ -173,11 +173,11 @@ def right(tetrimino, rotation, x, y):
       return new_coords
 
 def get_tetrimino(): 
-      # Create a new tetrimino for the board 
+      # create a new tetrimino for the board 
       tetrimino = random.choice(tetriminos)
       rotation = random.choice(rotations)
 
-      # Worry about randomise this for all possible case later
+      # worry about randomising this for all possible cases later
       return dict(
             tetrimino = tetrimino,
             rotation = rotation,
