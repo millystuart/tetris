@@ -184,3 +184,13 @@ def get_tetrimino():
             x = 4,
             y = 0
       )
+
+def is_top_row_blank(active):
+      # import pdb; pdb.set_trace()
+
+      shape = active["tetrimino"]
+      rotation = active["rotation"]
+      tetrimino = shape["rotations"][rotation]
+      top = tetrimino[0]
+
+      return all(v != 1 for v in top)
