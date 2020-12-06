@@ -37,8 +37,12 @@ def draw_tetrimino(board, board_surface):
     if is_top_row_blank(board["active"]) == False:
         pass
     else:
-        for i in range(0, len(coords)):
-            coords[i] = (coords[i][0], coords[i][1] - 1, coords[i][2])
+        if board["active"]["tetrimino"] == I and board["active"]["rotation"] == 2:
+            for i in range(0, len(coords)):
+                coords[i] = (coords[i][0], coords[i][1] - 2, coords[i][2])
+        else: 
+            for i in range(0, len(coords)):
+                coords[i] = (coords[i][0], coords[i][1] - 1, coords[i][2])
 
     for i in range(0, 4):
         draw_block(board_surface, coords[i][0], coords[i][1]) 
