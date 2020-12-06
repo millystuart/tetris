@@ -182,12 +182,20 @@ def get_tetrimino():
             tetrimino = tetrimino,
             rotation = rotation,
             x = 4,
-            y = 0
+            # Initial y-coord must be based on presence of leading zero-rows 
+            y = 0 - number_of_zeroed_rows(tetrimino)
       )
+
+def number_of_zeroed_rows(tetrimino): 
+      row = 0
+      zeroed_rows = 0 
+      for row in tetrimino:
+            if  all(v != 1 for v in row):
+                  zeroed_rows = zeroed_rows + 1
+      return zeroed_rows      
 
 def is_top_row_blank(active):
       # import pdb; pdb.set_trace()
-
       shape = active["tetrimino"]
       rotation = active["rotation"]
       tetrimino = shape["rotations"][rotation]
