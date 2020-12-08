@@ -193,6 +193,8 @@ def number_of_zeroed_rows(tetrimino, rotation):
       for row in tetrimino_cells:
             if  all(v != 1 for v in row):
                   zeroed_rows = zeroed_rows + 1
+            else:
+                  break
       return zeroed_rows      
 
 def is_top_row_blank(active):
