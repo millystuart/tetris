@@ -2,7 +2,7 @@ import pygame
 import sys
 from graphics import render, initialise_graphics, press_space_to_start, draw_block, draw_tetrimino
 from board import initialise_board
-from tetrimino import coords_tetrimino
+from tetrimino import coords_tetrimino, find_largest_x_coord, find_smallest_x_coord
 
 def main(): # the main game loop
     pygame.init()
@@ -21,12 +21,27 @@ def event_loop(board):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN: 
                     coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
-                    # import pdb; pdb.set_trace()
                     if coords[3][1] < 19:
                         board["active"]["y"] = board["active"]["y"] + 1
                         render(board)
                     else:
-                        render(board)                    
+                        render(board)  
+
+                if event.key == pygame.K_LEFT:
+                    coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
+                    if find_smallest_x_coord(coords)[0] > 0:
+                        board["active"]["x"] = board["active"]["x"] - 1   
+                        render(board)
+                    else:
+                        render(board)
+
+                if event.key == pygame.K_RIGHT:
+                    coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
+                    if find_largest_x_coord(coords)[0] < 9:
+                        board["active"]["x"] = board["active"]["x"] + 1   
+                        render(board)
+                    else:
+                        render(board)      
 
                 if event.key == pygame.K_SPACE:
                     if game_in_progress:

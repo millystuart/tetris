@@ -15,4 +15,8 @@ def test_right():
 def test_number_of_zeroed_rows(): 
     assert number_of_zeroed_rows(I, 2) == 2
 
-    
+def test_find_smallest_x_coord():
+    assert find_smallest_x_coord([(0, 1, green), (1, 1, green), (1, 0, green), (2, 0, green)]) == (0, 1, green)
+
+def test_find_largest_x_coord():
+    assert find_largest_x_coord([(0, 1, green), (1, 1, green), (1, 0, green), (2, 0, green)]) == (2, 0, green)

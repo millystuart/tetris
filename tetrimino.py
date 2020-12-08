@@ -154,24 +154,6 @@ def coords_tetrimino(tetrimino, rotation, x, y): # to convert our 2D arrays into
             current_row = current_row + 1      
       return coords
 
-def left(tetrimino, rotation, x, y):
-      new_coords = []
-      new_coords = coords_tetrimino(tetrimino, rotation, x, y)
-
-      for i in range(0,4):
-            new_coords[i] = (new_coords[i][0] - 1, new_coords[i][1], new_coords[i][2])
-
-      return new_coords
-
-def right(tetrimino, rotation, x, y):
-      new_coords = []
-      new_coords = coords_tetrimino(tetrimino, rotation, x, y)
-
-      for i in range(0,4):
-            new_coords[i] = (new_coords[i][0] + 1, new_coords[i][1], new_coords[i][2])
-            
-      return new_coords
-
 def get_tetrimino(): 
       # create a new tetrimino for the board 
       tetrimino = random.choice(tetriminos)
@@ -205,3 +187,19 @@ def is_top_row_blank(active):
       top = tetrimino[0]
 
       return all(v != 1 for v in top)
+
+def find_largest_x_coord(coords):
+      rightmost_coord = coords[0]
+      for i in range(1,4):
+            if coords[i][0] > rightmost_coord[0]:
+                  rightmost_coord = coords[i]
+
+      return rightmost_coord
+
+def find_smallest_x_coord(coords):
+      leftmost_coord = coords[0]
+      for i in range(1,4):
+            if coords[i][0] < leftmost_coord[0]:
+                  leftmost_coord = coords[i]
+
+      return leftmost_coord
