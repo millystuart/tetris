@@ -183,13 +183,14 @@ def get_tetrimino():
             rotation = rotation,
             x = 4,
             # Initial y-coord must be based on presence of leading zero-rows 
-            y = 0 - number_of_zeroed_rows(tetrimino)
+            y = 0 - number_of_zeroed_rows(tetrimino, rotation)
       )
 
-def number_of_zeroed_rows(tetrimino): 
+def number_of_zeroed_rows(tetrimino, rotation):
+      tetrimino_cells = tetrimino["rotations"][rotation] 
       row = 0
       zeroed_rows = 0 
-      for row in tetrimino:
+      for row in tetrimino_cells:
             if  all(v != 1 for v in row):
                   zeroed_rows = zeroed_rows + 1
       return zeroed_rows      
