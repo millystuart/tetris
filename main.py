@@ -1,7 +1,7 @@
 import pygame, time, sys
-from graphics import fps, render, initialise_graphics, press_space_to_start, draw_block, draw_tetrimino
+from graphics import fps, render, initialise_graphics, press_space_to_start, draw_block, draw_active_tetrimino
 from board import initialise_board
-from tetrimino import coords_tetrimino, find_largest_x_coord, find_smallest_x_coord
+from tetrimino import coords_tetrimino, find_largest_x_coord, find_smallest_x_coord, commit_tetrimino, get_tetrimino
 
 def main(): # the main game loop
     global fps_clock, fall_freq
@@ -54,7 +54,7 @@ def event_loop(board):
                     coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
                     if coords[3][1] < 19:
                         board["active"]["y"] = board["active"]["y"] + 1
-                        render(board)  
+                        render(board)
 
                 if event.key == pygame.K_UP and game_in_progress == True:
                     board["active"]["rotation"] += 1
@@ -87,6 +87,7 @@ def event_loop(board):
                 render(board)
                 last_fall_time = time.time()
             else:
+                commit_tetrimino(coords, board)
                 render(board)
 
 main()

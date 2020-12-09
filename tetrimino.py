@@ -209,3 +209,7 @@ def is_valid_position(coords):
             return False
       else:
             return True
+
+def commit_tetrimino(coords, board):
+      board["committed"].append(coords)
+      board["active"] = get_tetrimino()
