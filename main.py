@@ -30,6 +30,8 @@ def event_loop(board):
                         pass
                     else:
                         game_in_progress = True
+                        pygame.mixer.music.load("Tetris_theme.ogg")
+                        pygame.mixer.music.play()
                         render(board)
 
                 if event.key == pygame.K_LEFT and game_in_progress == True:
