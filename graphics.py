@@ -4,6 +4,8 @@ import sys
 
 screen_width_px = 1000 
 screen_height_px = 900 
+fps = 25
+
 global board_surface
 
 block_size_px = 40 # size of a block relative to the board
