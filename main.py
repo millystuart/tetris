@@ -7,7 +7,7 @@ def main(): # the main game loop
     global fps_clock, fall_freq
     pygame.init()
     fps_clock = pygame.time.Clock()
-    fall_freq = 0.5
+    fall_freq = 0.4
     board = initialise_board()
     initialise_graphics()
     press_space_to_start()
@@ -18,7 +18,6 @@ def main(): # the main game loop
 def event_loop(board):     
     game_in_progress = False
     last_fall_time = time.time()
-    last_shift_time = time.time()
 
     while True:
         for event in pygame.event.get(): # system exit loop
@@ -47,7 +46,13 @@ def event_loop(board):
                         board["active"]["x"] = board["active"]["x"] + 1   
                         render(board)
                     else:
-                        render(board)      
+                        render(board)  
+
+                if event.key == pygame.K_DOWN:
+                    coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
+                    if coords[3][1] < 19:
+                        board["active"]["y"] = board["active"]["y"] + 1
+                        render(board)    
 
         # making the tetrimino fall when it's time to fall
         if time.time() - last_fall_time > fall_freq and game_in_progress == True:
