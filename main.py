@@ -77,7 +77,7 @@ def event_loop(board):
 
                     render(board)
 
-        making the tetrimino fall when it's time to fall
+        # making the tetrimino fall when it's time to fall
         if time.time() - last_fall_time > fall_freq and game_in_progress == True:
             coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
             if coords[3][1] < 19:
