@@ -205,7 +205,7 @@ def find_smallest_x_coord(coords):
       return leftmost_coord
 
 def is_valid_position(coords):
-      if coords[1] < 0:
+      if coords[0][1] < 0:
             return False
       else:
             return True
