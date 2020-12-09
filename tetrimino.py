@@ -203,3 +203,9 @@ def find_smallest_x_coord(coords):
                   leftmost_coord = coords[i]
 
       return leftmost_coord
+
+def is_valid_position(coords):
+      if coords[1] < 0:
+            return False
+      else:
+            return True
