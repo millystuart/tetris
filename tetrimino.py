@@ -204,16 +204,23 @@ def find_smallest_x_coord(coords):
 
       return leftmost_coord
 
-def coords_with_largest_y(coords):
-      largest_coords = []
-      largest_coord = coords[0]
-      for i in range(1, 4):
-            if coords[i][1] > largest_coord[1]:
-                  largest_coord = coords[i]
+def get_x_coords(coords):
+      x_coords = []
+      for i in range(0, len(coords)):
+            if all(v != coords[i][0] for v in x_coords):
+                  x_coords.append(coords[i][0])
       
-      for i in range(0,4):
-            if coords[i][1] == largest_coord[1]:
-                  largest_coords.append(coords[i])
+      return x_coords
+
+def coords_with_largest_y(coords, x_coords):
+      largest_coords = []
+
+      for i in range(0, len(x_coords)):
+            largest_coord = (-1, -1, -1)
+            for j in range(0, len(coords)):
+                  if coords[j][0] == x_coords[i] and coords[j][1] > largest_coord[1]:
+                        largest_coord = coords[j]
+            largest_coords.append(largest_coord)
 
       return largest_coords
 
