@@ -19,3 +19,6 @@ def test_get_x_coords():
 
 def test_coords_with_largest_y():
     assert coords_with_largest_y([(3, 0, orange), (3, 1, orange), (3, 2, orange), (4, 2, orange)], [3, 4]) == [(3, 2, orange), (4, 2, orange)]
+
+def test_coords_with_largest_y2():
+    assert coords_with_largest_y([(3, 2, purple), (4, 2, purple), (4, 3, purple), (5, 3, purple)], [3, 4, 5]) == [(3, 2, purple), (4, 3, purple), (5, 3, purple)]

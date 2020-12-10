@@ -233,3 +233,20 @@ def is_game_over(coords):
 def commit_tetrimino(coords, board):
       board["committed"].append(coords)
       board["active"] = get_tetrimino()
+
+def vertical_collisions(max_y_coords, committed_coords):
+      for i in range(0, len(max_y_coords)):
+            if committed_coords == []:
+                  if max_y_coords[i][1] + 1 > 19:
+                        return True
+                  else:
+                        return False
+            else:
+                  for j in range(0, len(committed_coords)):
+                        for k in range(0, 4):
+                              if max_y_coords[i][1] + 1 == committed_coords[j][k][1] and max_y_coords[i][0] == committed_coords[j][k][0]:
+                                    return True
+                              elif max_y_coords[i][1] + 1 > 19:
+                                    return True
+                  
+      return False
