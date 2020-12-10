@@ -1,7 +1,7 @@
 import pygame, time, sys
 from graphics import fps, render, initialise_graphics, press_space_to_start, draw_block, draw_active_tetrimino
-from board import initialise_board
-from tetrimino import coords_tetrimino, find_largest_x_coord, find_smallest_x_coord, commit_tetrimino, get_tetrimino
+from board import initialise_board, max_point_on_board
+from tetrimino import coords_tetrimino, find_largest_x_coord, find_smallest_x_coord, commit_tetrimino, get_tetrimino, coords_with_largest_y
 
 def main(): # the main game loop
     global fps_clock, fall_freq
@@ -82,12 +82,13 @@ def event_loop(board):
         # making the tetrimino fall when it's time to fall
         if time.time() - last_fall_time > fall_freq and game_in_progress == True:
             coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
-            if coords[3][1] < 19:
+
+            if coords[3][1] < 19 and coords[3][1] < max_point_on_board(board["committed"], coords_with_largest_y(coords)): # only need x value of bottom cell
                 board["active"]["y"] = board["active"]["y"] + 1
                 render(board)
                 last_fall_time = time.time()
             else:
-                commit_tetrimino(coords, board)
                 render(board)
+                commit_tetrimino(coords, board)
 
 main()

@@ -190,7 +190,7 @@ def is_top_row_blank(active):
 
 def find_largest_x_coord(coords):
       rightmost_coord = coords[0]
-      for i in range(1,4):
+      for i in range(1, 4):
             if coords[i][0] > rightmost_coord[0]:
                   rightmost_coord = coords[i]
 
@@ -198,17 +198,30 @@ def find_largest_x_coord(coords):
 
 def find_smallest_x_coord(coords):
       leftmost_coord = coords[0]
-      for i in range(1,4):
+      for i in range(1, 4):
             if coords[i][0] < leftmost_coord[0]:
                   leftmost_coord = coords[i]
 
       return leftmost_coord
 
-def is_valid_position(coords):
+def coords_with_largest_y(coords):
+      largest_coords = []
+      largest_coord = coords[0]
+      for i in range(1, 4):
+            if coords[i][1] > largest_coord[1]:
+                  largest_coord = coords[i]
+      
+      for i in range(0,4):
+            if coords[i][1] == largest_coord[1]:
+                  largest_coords.append(coords[i])
+
+      return largest_coords
+
+def is_game_over(coords):
       if coords[0][1] < 0:
-            return False
-      else:
             return True
+      else:
+            return False
 
 def commit_tetrimino(coords, board):
       board["committed"].append(coords)
