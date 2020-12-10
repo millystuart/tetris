@@ -1,7 +1,7 @@
 import pygame, time, sys
 from graphics import fps, render, initialise_graphics, press_space_to_start, draw_block, draw_active_tetrimino
 from board import initialise_board
-from tetrimino import coords_tetrimino, find_largest_x_coord, find_smallest_x_coord, commit_tetrimino, get_tetrimino, coords_with_largest_y, get_x_coords, vertical_collisions
+from tetrimino import *
 
 def main(): # the main game loop
     global fps_clock, fall_freq
@@ -36,7 +36,8 @@ def event_loop(board):
 
                 if event.key == pygame.K_LEFT and game_in_progress == True:
                     coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
-                    if find_smallest_x_coord(coords)[0] > 0:
+                    
+                    if horizontal_left_collisions(coords_with_smallest_x(coords, get_y_coords(coords)), board["committed"]) == False:
                         board["active"]["x"] = board["active"]["x"] - 1   
                         render(board)
                     else:
@@ -44,7 +45,8 @@ def event_loop(board):
 
                 if event.key == pygame.K_RIGHT and game_in_progress == True:
                     coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
-                    if find_largest_x_coord(coords)[0] < 9:
+                    
+                    if horizontal_right_collisions(coords_with_largest_x(coords, get_y_coords(coords)), board["committed"]) == False:
                         board["active"]["x"] = board["active"]["x"] + 1   
                         render(board)
                     else:
@@ -52,9 +54,13 @@ def event_loop(board):
 
                 if event.key == pygame.K_DOWN and game_in_progress == True:
                     coords = coords_tetrimino(board["active"]["tetrimino"], board["active"]["rotation"], board["active"]["x"], board["active"]["y"])
-                    if coords[3][1] < 19:
+                    
+                    if vertical_collisions(coords_with_largest_y(coords, get_x_coords(coords)), board["committed"]) == False:
                         board["active"]["y"] = board["active"]["y"] + 1
                         render(board)
+                    else:
+                        render(board)
+                        commit_tetrimino(coords, board)
 
                 if event.key == pygame.K_UP and game_in_progress == True:
                     board["active"]["rotation"] += 1

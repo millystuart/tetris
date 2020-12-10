@@ -212,6 +212,14 @@ def get_x_coords(coords):
       
       return x_coords
 
+def get_y_coords(coords):
+      y_coords = []
+      for i in range(0, len(coords)):
+            if all(v != coords[i][1] for v in y_coords):
+                  y_coords.append(coords[i][1])
+
+      return y_coords
+
 def coords_with_largest_y(coords, x_coords):
       largest_coords = []
 
@@ -223,6 +231,30 @@ def coords_with_largest_y(coords, x_coords):
             largest_coords.append(largest_coord)
 
       return largest_coords
+
+def coords_with_largest_x(coords, y_coords):
+      largest_coords = []
+
+      for i in range(0, len(y_coords)):
+            largest_coord = (-1, -1, -1)
+            for j in range(0, len(coords)):
+                  if coords[j][1] == y_coords[i] and coords[j][0] > largest_coord[0]:
+                        largest_coord = coords[j]
+            largest_coords.append(largest_coord)
+      
+      return largest_coords
+
+def coords_with_smallest_x(coords, y_coords):
+      smallest_coords = []
+
+      for i in range(0, len(y_coords)):
+            smallest_coord = (11, 11, 11)
+            for j in range(0, len(coords)):
+                  if coords[j][1] == y_coords[i] and coords[j][0] < smallest_coord[0]:
+                        smallest_coord = coords[j]
+            smallest_coords.append(smallest_coord)
+
+      return smallest_coords
 
 def is_game_over(coords):
       if coords[0][1] < 0:
@@ -247,6 +279,40 @@ def vertical_collisions(max_y_coords, committed_coords):
                               if max_y_coords[i][1] + 1 == committed_coords[j][k][1] and max_y_coords[i][0] == committed_coords[j][k][0]:
                                     return True
                               elif max_y_coords[i][1] + 1 > 19:
+                                    return True
+                  
+      return False
+
+def horizontal_left_collisions(max_x_coords, committed_coords):
+      for i in range(0, len(max_x_coords)):
+            if committed_coords == []:
+                  if max_x_coords[i][0] - 1 < 0:
+                        return True
+                  else:
+                        return False
+            else:
+                  for j in range(0, len(committed_coords)):
+                        for k in range(0, 4):
+                              if max_x_coords[i][0] - 1 == committed_coords[j][k][0] and max_x_coords[i][1] == committed_coords[j][k][1]:
+                                    return True
+                              elif max_x_coords[i][0] - 1 < 0:
+                                    return True
+                  
+      return False
+
+def horizontal_right_collisions(max_x_coords, committed_coords):
+      for i in range(0, len(max_x_coords)):
+            if committed_coords == []:
+                  if max_x_coords[i][0] + 1 > 9:
+                        return True
+                  else:
+                        return False
+            else:
+                  for j in range(0, len(committed_coords)):
+                        for k in range(0, 4):
+                              if max_x_coords[i][0] + 1 == committed_coords[j][k][0] and max_x_coords[i][1] == committed_coords[j][k][1]:
+                                    return True
+                              elif max_x_coords[i][0] + 1 > 9:
                                     return True
                   
       return False

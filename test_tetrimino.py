@@ -17,8 +17,11 @@ def test_find_largest_x_coord():
 def test_get_x_coords():
     assert get_x_coords([(3, 0, orange), (3, 1, orange), (3, 2, orange), (4, 2, orange)]) == [3, 4]
 
-def test_coords_with_largest_y():
-    assert coords_with_largest_y([(3, 0, orange), (3, 1, orange), (3, 2, orange), (4, 2, orange)], [3, 4]) == [(3, 2, orange), (4, 2, orange)]
+def test_coords_with_smallest_x():
+    assert coords_with_smallest_x([(3, 0, orange), (3, 1, orange), (3, 2, orange), (4, 2, orange)], [0, 1, 2]) == [(3, 0, orange), (3, 1, orange), (3, 2, orange)]
 
-def test_coords_with_largest_y2():
-    assert coords_with_largest_y([(3, 2, purple), (4, 2, purple), (4, 3, purple), (5, 3, purple)], [3, 4, 5]) == [(3, 2, purple), (4, 3, purple), (5, 3, purple)]
+def test_coords_with_largest_x():
+    assert coords_with_largest_x([(3, 2, purple), (4, 2, purple), (4, 3, purple), (5, 3, purple)], [2, 3]) == [(4, 2, purple), (5, 3, purple)]
+
+def test_get_y_coords():
+    assert get_y_coords([(3, 4, orange), (3, 5, orange), (3, 6, orange), (4, 6, orange)]) == [4, 5, 6]
