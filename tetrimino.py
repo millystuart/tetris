@@ -295,7 +295,7 @@ def horizontal_left_collisions(max_x_coords, committed_coords):
                         for k in range(0, 4):
                               if max_x_coords[i][0] - 1 == committed_coords[j][k][0] and max_x_coords[i][1] == committed_coords[j][k][1]:
                                     return True
-                              elif max_x_coords[i][0] - 1 < 0:
+                              elif max_x_coords[i][0] < 0:
                                     return True
                   
       return False
@@ -312,7 +312,7 @@ def horizontal_right_collisions(max_x_coords, committed_coords):
                         for k in range(0, 4):
                               if max_x_coords[i][0] + 1 == committed_coords[j][k][0] and max_x_coords[i][1] == committed_coords[j][k][1]:
                                     return True
-                              elif max_x_coords[i][0] + 1 > 9:
+                              elif max_x_coords[i][0] > 9:
                                     return True
                   
       return False
