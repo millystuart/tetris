@@ -1,6 +1,6 @@
 import pygame, time, sys
 from graphics import fps, render, initialise_graphics, press_space_to_start, draw_block, draw_active_tetrimino
-from board import initialise_board
+from board import *
 from tetrimino import *
 
 def main(): # the main game loop
@@ -94,6 +94,7 @@ def event_loop(board):
                 render(board)
                 last_fall_time = time.time()
             else:
+                #delete_row(board["committed"], get_committed_y_coords(board["committed"]))
                 render(board)
                 commit_tetrimino(coords, board)
 
