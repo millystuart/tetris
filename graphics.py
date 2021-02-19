@@ -4,6 +4,8 @@ import sys
 
 screen_width_px = 1000 
 screen_height_px = 900 
+fps = 25
+
 global board_surface
 
 block_size_px = 40 # size of a block relative to the board
@@ -24,10 +26,10 @@ def press_space_to_start():
     screen.blit(message, messagerect) # draws my message onto the screen
     pygame.display.update() # updates the display to show changes
 
-def draw_block(board_surface, x, y):
-    pygame.draw.rect(board_surface , purple, ((x * block_size_px), (y * block_size_px), block_size_px, block_size_px), 4)
+def draw_block(board_surface, colour, x, y):
+    pygame.draw.rect(board_surface , colour, ((x * block_size_px), (y * block_size_px), block_size_px, block_size_px), 4)
 
-def draw_tetrimino(board, board_surface):
+def draw_active_tetrimino(board, board_surface):
     x = []
     y = []
     coords = []
@@ -41,14 +43,20 @@ def draw_tetrimino(board, board_surface):
             coords[i] = (coords[i][0], coords[i][1], coords[i][2])
 
     for i in range(0, 4):
-        draw_block(board_surface, coords[i][0], coords[i][1]) 
+        draw_block(board_surface, board["active"]["tetrimino"]["colour"], coords[i][0], coords[i][1])
+
+def draw_placed_tetriminos(board, board_surface):
+    for i in range(0, len(board["committed"])):
+        for j in range(0, 4):
+            draw_block(board_surface, board["committed"][i][j][2], board["committed"][i][j][0], board["committed"][i][j][1])
 
 def render(board): # creates a rough outline of the board in its most basic form
     board_width_px = board["width_in_blocks"] * block_size_px
     board_height_px = board["height_in_blocks"] * block_size_px
     board_surface = pygame.Surface((board_width_px, board_height_px))
     board_surface.fill(black)
-    draw_tetrimino(board, board_surface) 
+    draw_placed_tetriminos(board, board_surface)
+    draw_active_tetrimino(board, board_surface)        
 
     board_x = (screen_width_px - board_width_px) // 2 # point at which the board will lie with respect to the screen
     board_y = (screen_height_px - board_height_px) // 2
