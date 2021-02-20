@@ -1,6 +1,6 @@
 import pygame, time, sys
-from graphics import fps, render, initialise_graphics, press_space_to_start, draw_block, draw_active_tetrimino
-from board import *
+from graphics import fps, render, initialise_menu, instructions, draw_block, draw_active_tetrimino
+from board import initialise_board
 from tetrimino import *
 
 def main(): # the main game loop
@@ -8,14 +8,14 @@ def main(): # the main game loop
     pygame.init()
     fps_clock = pygame.time.Clock()
     fall_freq = 0.4
+    initialise_menu()
+    instructions()
     board = initialise_board()
-    initialise_graphics()
-    press_space_to_start()
     event_loop(board)
 
 #  if time.time() - lastFallTime > fallFreq:
 
-def event_loop(board):     
+def event_loop(board):
     game_in_progress = False
     last_fall_time = time.time()
 
