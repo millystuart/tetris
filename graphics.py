@@ -124,3 +124,25 @@ def render(board): # creates a rough outline of the board in its most basic form
     screen.blit(board_surface, (board_x, board_y))
     
     pygame.display.update()
+
+def paused():
+    pass
+
+def game_over():
+    screen.fill(black)
+    message_font = pygame.font.Font(font, 60)
+    text_font = pygame.font.SysFont('Helvetica', 40)
+
+    message = message_font.render('G A M E  O V E R', True, red, black)
+    messagerect = message.get_rect()
+    messagerect.centerx = screen.get_rect().centerx
+    messagerect.centery = 200
+    screen.blit(message, messagerect)
+
+    message = text_font.render('Please press space to continue to main menu', True, white, black)
+    messagerect = message.get_rect()
+    messagerect.centerx = screen.get_rect().centerx
+    messagerect.centery = 350
+    screen.blit(message, messagerect)
+
+    pygame.display.update()
