@@ -39,6 +39,7 @@ def initialise_menu():
                     if selected == "start":
                         return
                     if selected == "quit":
+                        replay = False
                         pygame.quit()
                         quit()
  

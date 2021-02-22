@@ -4,15 +4,16 @@ from board import initialise_board
 from tetrimino import *
 
 def main(): # the main game loop
-    global fps_clock, fall_freq
+    global fps_clock, fall_freq, replay
     pygame.init()
     fps_clock = pygame.time.Clock()
     fall_freq = 0.4
-    initialise_menu()
-    instructions()
-    board = initialise_board()
-    event_loop(board)
-    initialise_menu()
+    replay = True
+    while replay == True:
+        initialise_menu()
+        instructions()
+        board = initialise_board()
+        event_loop(board)
 
 #  if time.time() - lastFallTime > fallFreq:
 
