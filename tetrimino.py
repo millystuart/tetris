@@ -257,9 +257,13 @@ def coords_with_smallest_x(coords, y_coords):
       return smallest_coords
 
 def is_game_over(coords):
-      if coords[0][1] < 0:
-            return True
+      if coords == []:
+            return False
       else:
+            for i in range(0, len(coords)):
+                        for j in range(0, 4):
+                              if coords[i][j][1] == 0:
+                                    return True
             return False
 
 def commit_tetrimino(coords, board):

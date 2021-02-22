@@ -125,10 +125,10 @@ def render(board): # creates a rough outline of the board in its most basic form
     
     pygame.display.update()
 
-def paused():
+def paused_screen():
     pass
 
-def game_over():
+def game_over_screen():
     screen.fill(black)
     message_font = pygame.font.Font(font, 60)
     text_font = pygame.font.SysFont('Helvetica', 40)

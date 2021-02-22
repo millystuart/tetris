@@ -1,5 +1,5 @@
 import pygame, time, sys
-from graphics import fps, render, initialise_menu, instructions, draw_block, draw_active_tetrimino
+from graphics import fps, render, initialise_menu, instructions, draw_block, draw_active_tetrimino, game_over_screen
 from board import initialise_board
 from tetrimino import *
 
@@ -12,6 +12,7 @@ def main(): # the main game loop
     instructions()
     board = initialise_board()
     event_loop(board)
+    initialise_menu()
 
 #  if time.time() - lastFallTime > fallFreq:
 
@@ -84,6 +85,16 @@ def event_loop(board):
                     board["active"]["y"] -= y_shift
 
                     render(board)
+
+        # making the game end in the case of a game over
+        if is_game_over(board["committed"]) == True and game_in_progress == True:
+            pygame.mixer.music.pause()
+            game_over_screen()
+            while True:
+                for event in pygame.event.get():
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_SPACE:
+                            return
 
         # making the tetrimino fall when it's time to fall
         if time.time() - last_fall_time > fall_freq and game_in_progress == True:
